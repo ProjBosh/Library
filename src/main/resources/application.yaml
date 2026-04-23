@@ -2,29 +2,28 @@ spring:
   application:
     name: library
 
-  # Настройки подключения к PostgreSQL
   datasource:
     url: jdbc:postgresql://localhost:5432/library_db
     username: library_user
     password: library_password
     driver-class-name: org.postgresql.Driver
 
-  # Настройки JPA/Hibernate
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
 
-# Настройки порта сервера
 server:
   port: 9090
 
-# Логирование SQL запросов
+# Правильные значения для уровней логирования
 logging:
   level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.SQL: OFF
+    org.hibernate.type.descriptor.sql.BasicBinder: OFF
+    org.springframework: WARN     # ← WARN, а не WARNING
+    ru.library: INFO              # ваш пакет
