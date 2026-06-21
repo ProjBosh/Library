@@ -45,3 +45,32 @@ body {
     margin: 20px;
     padding: 0;
 }
+
+/* Общие стили для всех кнопок действий */
+.action-buttons a,
+.action-buttons button {
+    display: inline-block;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none; /* для ссылок */
+    color: white;
+}
+
+/* Разные цвета для действий */
+.btn-add {
+  background: #28a745;
+}
+.btn-add:hover {
+  background: #218838;
+}
+
+.btn-delete {
+  background: #dc3545;
+}
+.btn-delete:hover {
+  background: #c82333;
+}
