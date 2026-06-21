@@ -3,38 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Список книг</title>
-
-    <!-- Подключение CSS файла -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/books-list-style.css}">
-
 </head>
 <body>
-<h1>Библиотека - Список книг</h1>
+    <h1>Библиотека - Список книг</h1>
 
-<table class="book-table">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Название</th>
-        <th>Автор</th>
-        <th>ISBN</th>
-        <th>Год издания</th>
-        <th>Количество</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="book : ${books}">
-        <td th:text="${book.id}"></td>
-        <td th:text="${book.title}"></td>
-        <td th:text="${book.author}"></td>
-        <td th:text="${book.isbn}"></td>
-        <td th:text="${book.publishedYear}"></td>
-        <td th:text="${book.quantity}"></td>
-    </tr>
-    </tbody>
-</table>
+    <a href="/">На главную</a>
+    <br/><br/>
 
-<br/>
-<a href="/">На главную</a>
+    <!-- Сообщения об успехе/ошибке -->
+    <div th:if="${message}" th:text="${message}" style="color: green;"></div>
+    <div th:if="${error}" th:text="${error}" style="color: red;"></div>
+    <br>
+    
+    <!-- Форма для удаления -->
+    <form th:action="@{/books/delete}" method="post">
+        <div class="action-buttons">
+            <a th:href="@{/books/add}" class="btn-add">Добавить</a>
+            <button type="submit" class="btn-delete">Удалить выбранные</button>
+        </div>
+
+        <table class="book-table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="selectAll" onclick="toggleAll(this)"></th>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Автор</th>
+                    <th>ISBN</th>
+                    <th>Год издания</th>
+                    <th>Количество</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${books}">
+                    <td><input type="checkbox" name="selectedIds" th:value="${book.id}"></td>
+                    <td th:text="${book.id}"></td>
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.isbn}"></td>
+                    <td th:text="${book.publishedYear}"></td>
+                    <td th:text="${book.quantity}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <script>
+        function toggleAll(source) {
+            const checkboxes = document.querySelectorAll('input[name="selectedIds"]');
+            checkboxes.forEach(cb => cb.checked = source.checked);
+        }
+    </script>
 </body>
 </html>
