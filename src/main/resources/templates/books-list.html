@@ -27,10 +27,9 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" id="selectAll" onclick="toggleAll(this)"></th>
-                    <th>ID</th>
+                    <th>ISBN</th>
                     <th>Название</th>
                     <th>Автор</th>
-                    <th>ISBN</th>
                     <th>Год издания</th>
                     <th>Количество</th>
                 </tr>
@@ -38,10 +37,10 @@
             <tbody>
                 <tr th:each="book : ${books}">
                     <td><input type="checkbox" name="selectedIds" th:value="${book.id}"></td>
-                    <td th:text="${book.id}"></td>
+                    <!-- <td th:text="${book.id}"></td> -->
+                    <td th:text="${book.isbn}"></td>
                     <td th:text="${book.title}"></td>
                     <td th:text="${book.author}"></td>
-                    <td th:text="${book.isbn}"></td>
                     <td th:text="${book.publishedYear}"></td>
                     <td th:text="${book.quantity}"></td>
                 </tr>
