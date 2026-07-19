@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список авторов</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/books-list-style.css}">
+</head>
+<body>
+    <h1>Библиотека - список авторов</h1>
+
+    <a href="/">На главную</a>
+    <br/><br/>
+
+
+    <!-- <div th:if="${message}" th:text="${message}" style="color: green;"></div>
+    <div th:if="${error}" th:text="${error}" style="color: red;"></div>
+    <br> -->
+
+
+    <form th:action="@{/authors/delete}" method="post">
+        <div class="action-buttons">
+            <a th:href="@{/author/add}" class="btn-add">Добавить</a>
+            <button type="submit" class="btn-delete">Удалить выбранные</button>
+        </div>
+
+        <table class="author-table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="selectAll" onclick="toggleAll(this)"></th>
+                <th>ID</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Полное ФИО</th>
+                <th>Дата рождения</th>
+                <th>Дата смерти</th>
+            </thead>
+            <tbody>
+                <tr th:each="author : ${authors}">
+                    <td><input type="checkbox" name="selectedIds" th:value="${author.id}"></td>
+                    <td th:text="${author.id}"></td>
+                    <td th:text="${author.lastName}"></td>
+                    <td th:text="${author.firstName}"></td>
+                    <td th:text="${author.middleName}"></td>
+                    <td th:text="${author.fullName}"></td>
+                    <td th:text="${author.dateOfBirth}"></td>
+                    <td th:text="${author.dateOfDeath}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <script>
+        function toggleAll(source) {
+            const checkboxes = document.querySelectorAll('input[name="selectedIds"]');
+            checkboxes.forEach(cb => cb.checked = source.checked);
+        }
+    </script>
+</body>
+</html>
