@@ -10,13 +10,13 @@
 
     <form th:action="@{/books/add}" th:object="${book}" method="post">
         <div>
+            <label>ISBN: <input type="text" th:field="*{isbn}" required></label>
+        </div>
+        <div>
             <label>Название: <input type="text" th:field="*{title}" required></label>
         </div>
         <div>
             <label>Автор: <input type="text" th:field="*{author}" required></label>
-        </div>
-        <div>
-            <label>ISBN: <input type="text" th:field="*{isbn}" required></label>
         </div>
         <div>
             <label>Год издания: <input type="number" th:field="*{publishedYear}"></label>
