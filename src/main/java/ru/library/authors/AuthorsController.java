@@ -1,4 +1,4 @@
-package ru.library.author;
+package ru.library.authors;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

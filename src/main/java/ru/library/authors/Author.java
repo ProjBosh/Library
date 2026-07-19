@@ -1,4 +1,4 @@
-package ru.library.author;
+package ru.library.authors;
 
 import java.sql.Date;
 
