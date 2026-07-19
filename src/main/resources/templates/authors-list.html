@@ -12,9 +12,9 @@
     <br/><br/>
 
 
-    <!-- <div th:if="${message}" th:text="${message}" style="color: green;"></div>
+    <div th:if="${message}" th:text="${message}" style="color: green;"></div>
     <div th:if="${error}" th:text="${error}" style="color: red;"></div>
-    <br> -->
+    <br>
 
 
     <form th:action="@{/authors/delete}" method="post">
@@ -23,7 +23,7 @@
             <button type="submit" class="btn-delete">Удалить выбранные</button>
         </div>
 
-        <table class="author-table">
+        <table class="book-table">
             <thead>
                 <tr>
                     <th><input type="checkbox" id="selectAll" onclick="toggleAll(this)"></th>
