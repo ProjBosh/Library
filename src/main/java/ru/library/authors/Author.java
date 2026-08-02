@@ -16,11 +16,11 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String FirstName;
-    private String LastName;
-    private String MiddleName;
-    private String FullName;
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private String fullName;
 
-    private Date DateOfBirth;
-    private Date DateOfDeath;
+    private Date dateOfBirth;
+    private Date dateOfDeath;
 }
