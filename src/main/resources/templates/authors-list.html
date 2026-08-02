@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Список авторов</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/books-list-style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/buttons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tables.css}">
 </head>
 <body>
     <h1>Библиотека - список авторов</h1>
@@ -19,18 +21,15 @@
 
     <form th:action="@{/authors/delete}" method="post">
         <div class="action-buttons">
-            <a th:href="@{/author/add}" class="btn-add">Добавить</a>
+            <a th:href="@{/authors/add}" class="btn-add">Добавить</a>
             <button type="submit" class="btn-delete">Удалить выбранные</button>
         </div>
 
-        <table class="book-table">
+        <table class="table">
             <thead>
                 <tr>
-                    <th><input type="checkbox" id="selectAll" onclick="toggleAll(this)"></th>
-                <th>ID</th>
-                <th>Фамилия</th>
-                <th>Имя</th>
-                <th>Отчество</th>
+                    <th><input type="checkbox" id="selectAll" onclick="toggleAll(this)">
+                </th>
                 <th>Полное ФИО</th>
                 <th>Дата рождения</th>
                 <th>Дата смерти</th>
@@ -38,10 +37,6 @@
             <tbody>
                 <tr th:each="author : ${authors}">
                     <td><input type="checkbox" name="selectedIds" th:value="${author.id}"></td>
-                    <td th:text="${author.id}"></td>
-                    <td th:text="${author.lastName}"></td>
-                    <td th:text="${author.firstName}"></td>
-                    <td th:text="${author.middleName}"></td>
                     <td th:text="${author.fullName}"></td>
                     <td th:text="${author.dateOfBirth}"></td>
                     <td th:text="${author.dateOfDeath}"></td>
