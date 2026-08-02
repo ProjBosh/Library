@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Список книг</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/books-list-style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/buttons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tables.css}">
 </head>
 <body>
     <h1>Библиотека - Список книг</h1>
@@ -23,7 +25,7 @@
             <button type="submit" class="btn-delete">Удалить выбранные</button>
         </div>
 
-        <table class="book-table">
+        <table class="table">
             <thead>
                 <tr>
                     <th><input type="checkbox" id="selectAll" onclick="toggleAll(this)"></th>
