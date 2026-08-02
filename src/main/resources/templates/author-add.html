@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.themeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить авторов</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Добавление нового автора</h1>
+
+    <form th:action="@{/authors/add}" th:object="${author}" method="post">
+        <div>
+            <label>Фамилия <input type="text" th:field="*{lastName}" required></label>
+        </div>
+        <div>
+            <label>Имя <input type="text" th:field="*{firstName}" required></label>
+        </div>
+        <div>
+            <label>Отчество <input type="text" th:field="*{middleName}" required></label>
+        </div>
+        <div>
+            <label>Дата рождения <input type="date" th:field="*{dateOfBirth}" required></label>
+        </div>
+        <div>
+            <label>Дата смерти <input type="date" th:field="*{dateOfDeath}" required></label>
+        </div>
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>
