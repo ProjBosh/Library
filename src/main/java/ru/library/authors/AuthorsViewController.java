@@ -3,7 +3,6 @@ package ru.library.authors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -35,6 +34,13 @@ public class AuthorsViewController {
     // === Обработка добавления ===
     @PostMapping("/add")
     public String addAuthor(@ModelAttribute Author author, RedirectAttributes redirectAttributes) {
+        String fullName = author.getLastName() + " " + author.getFirstName();
+        String middleName = author.getMiddleName();
+        if(middleName != null && !middleName.isEmpty()) {
+            fullName += " " + author.getMiddleName();
+        }
+        author.setFullName(fullName);
+         
         authorRepository.save(author);
         redirectAttributes.addFlashAttribute("message", "Автор успешно добавлен");
         return "redirect:/authors";
