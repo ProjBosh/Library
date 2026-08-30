@@ -23,7 +23,7 @@ public class CommandParser {
     }
 
     public void execute(String consoleCommand) {
-        String[] arrCommand = consoleCommand.split(" ");
+        String[] arrCommand = consoleCommand.trim().split("\\s+");
         int length = arrCommand.length;
 
         if (length >= 2) {
@@ -66,8 +66,13 @@ public class CommandParser {
         
         int indexArg = 0;
 
-        for(int i = 2; i < arrCommand.length; i++)
-            args[indexArg++] = arrCommand[i].trim();
+        for(int i = 2; i < arrCommand.length; i++) {
+            String argument = arrCommand[i].trim();
+            
+            if (!argument.isEmpty()) {
+                args[indexArg++] = argument;
+            }
+        }
 
         lengthArgs = args.length;
     }
@@ -113,8 +118,17 @@ public class CommandParser {
 
     private void addAuthor() {
         if (lengthArgs < 4 || lengthArgs > 5) {
-            System.out.println("add author требует 4 или 5 аргументов (дата смерти опциональна)");
-            System.out.println("\nadd author last_name first_name middle_name date_of_birth {date_of_date}");
+            System.out.println("\nadd author требует 4 или 5 аргументов (дата смерти опциональна)");
+            System.out.println("add author last_name first_name middle_name date_of_birth {date_of_date}");
+            return;
+        }
+        
+        String lastName = args[0].trim();
+        String firstName = args[1].trim();
+        String middleName = args[2].trim();
+
+        if (lastName.isEmpty() || firstName.isEmpty() || middleName.isEmpty()) {
+            System.err.println("Фамилия, имя и отчество не могут быть пустыми");
             return;
         }
 
@@ -124,9 +138,9 @@ public class CommandParser {
 
         try {
             authorService.create(
-                args[0],
-                args[1],
-                args[2],
+                lastName,
+                firstName,
+                middleName,
                 dateOfBirth,
                 dateOfDeath
             );
