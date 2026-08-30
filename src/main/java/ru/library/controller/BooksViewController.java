@@ -1,9 +1,12 @@
-package ru.library.books;
+package ru.library.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import ru.library.domain.Book;
+import ru.library.repository.BookRepository;
 
 import java.util.List;
 

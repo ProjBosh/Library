@@ -1,9 +1,12 @@
-package ru.library.authors;
+package ru.library.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import ru.library.domain.Author;
+import ru.library.repository.AuthorRepository;
 
 import java.util.List;
 
