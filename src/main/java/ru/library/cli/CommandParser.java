@@ -112,7 +112,8 @@ public class CommandParser {
     }
 
     private void addAuthor() {
-        if (printErrorIfInvalidArgCount(4)) {
+        if (lengthArgs < 4 || lengthArgs > 5) {
+            System.out.println("add author требует 4 или 5 аргументов (дата смерти опциональна)");
             System.out.println("\nadd author last_name first_name middle_name date_of_birth {date_of_date}");
             return;
         }
