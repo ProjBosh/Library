@@ -2,6 +2,7 @@ package ru.library;
 
 import java.util.Scanner;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,9 +12,11 @@ import ru.library.cli.CommandParser;
 @SpringBootApplication
 public class MainCLI implements CommandLineRunner{
     private final CommandParser commandParser;
+    private final ApplicationContext applicationContext;
 
-    public MainCLI(CommandParser commandParser) {
+    public MainCLI(CommandParser commandParser, ApplicationContext applicationContext) {
         this.commandParser = commandParser;
+        this.applicationContext = applicationContext;
     }
 
     public static void main(String[] args) {
@@ -43,5 +46,8 @@ public class MainCLI implements CommandLineRunner{
 
         stopTime = System.currentTimeMillis();
         System.out.println("Working hours: " + (stopTime - startTime) / milliseconds);
+
+        int exitCode = SpringApplication.exit(applicationContext, () -> 0);
+        System.exit(exitCode);
     }
 }
