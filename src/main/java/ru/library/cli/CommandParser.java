@@ -148,6 +148,7 @@ public class CommandParser {
             
             case "author":
                 showListAuthors();
+                break;
             
             default:
                 break;
