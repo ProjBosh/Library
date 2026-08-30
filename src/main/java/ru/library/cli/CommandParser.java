@@ -32,9 +32,8 @@ public class CommandParser {
             
             if (length >= 3) {
                 args = new String[length - 2];
+                fillArguments(arrCommand);
             }
-
-            fillArguments(arrCommand);
             
             switch (action) {
                 case "add":
@@ -97,15 +96,17 @@ public class CommandParser {
     
     private void addBook() {
         if (printErrorIfInvalidArgCount(5)) {
-            System.out.println("\nadd book isbn title author published_year quantity");
+            System.out.println("\nadd book isbn title authorID published_year quantity");
             return;
         }
+
+        Long authorID = Long.valueOf(args[2]);
 
         try {
             bookService.create(
                 args[0], 
                 args[1], 
-                args[2], 
+                authorID, 
                 Integer.valueOf(args[3]),
                 Integer.valueOf(args[4]) 
             );
@@ -156,7 +157,7 @@ public class CommandParser {
             return;
 
         switch (object) {
-            case "book":
+            case "book":   
                 showListBooks();
                 break;
             
@@ -173,9 +174,9 @@ public class CommandParser {
         System.out.println("\nList of books:");
         bookService.findAll()
             .forEach(
-                b -> System.out.println(b.getIsbn() + " |> " + b.getId() + " / " + b.getTitle() +  " / " + b.getAuthor() 
+                b -> System.out.println(b.getIsbn() + " |> " + b.getId() + " / " + b.getTitle() +  " / " + b.getAuthorID() 
                     + " / " + b.getPublishedYear() +  " / " + b.getQuantity())
-            );
+            );   
     }
 
     private void showListAuthors() {

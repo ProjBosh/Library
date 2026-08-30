@@ -19,7 +19,6 @@ public class Book {
     private long id;
 
     private String title;
-    private String author;
 
     @Column(unique = true)
     private String isbn;
@@ -27,10 +26,14 @@ public class Book {
     private Integer publishedYear;
     private Integer quantity;
 
-    public Book(String isbn, String title, String author, Integer publishedYear, Integer quantity) {
+    @Column(name = "authorid")
+    private long authorID;
+
+
+    public Book(String isbn, String title, Author author, Integer publishedYear, Integer quantity) {
         this.isbn = isbn;
         this.title = title;
-        this.author = author;
+        this.authorID = author.getId();
         this.publishedYear = publishedYear;
         this.quantity = quantity;
     }
